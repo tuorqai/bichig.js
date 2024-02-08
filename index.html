@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
+    <title>bichig.js</title>
+</head>
+<body>
+    <div class="content">
+        <!-- Font selector -->
+        <div class="select-container">
+            <select id="mng-font-select"></select>
+        </div>
+
+        <!-- Introduction -->
+        <h1>bichig.js</h1>
+
+        <!-- Input and output boxes -->
+        <div class="io-container">
+            <div class="io-child">
+                <textarea id="io-input">Input</textarea>
+            </div>
+            <div class="io-child">
+                <textarea class="mongol" id="io-output">Output</textarea>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="select-container">
+            <select id="mode-select"></select>
+        </div>
+
+        <p>Table below contains rules by which transliteration is performed.</p>
+        <p>Use selector in the right to choose different rules.</p>
+
+        <div id="table-container"></div>
+    </div>
+
+    <div class="footer">
+        <a href="https://github.com/tuorqai">tuorqai</a> &copy; 2024
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
