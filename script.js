@@ -359,7 +359,12 @@ for (let id in mongolianFonts) {
     fontSelect.appendChild(option);
 }
 
+if (localStorage['fontString']) {
+    fontSelect.value = localStorage['fontString'];
+}
+
 fontSelect.addEventListener('change', () => {
+    localStorage['fontString'] = fontSelect.value;
     applyFont(fontSelect.value);
 });
 
@@ -377,7 +382,12 @@ for (let id in rules) {
     modeSelect.appendChild(option);
 }
 
+if (localStorage['modeString']) {
+    modeSelect.value = localStorage['modeString'];
+}
+
 modeSelect.addEventListener('change', () => {
+    localStorage['modeString'] = modeSelect.value;
     ioOutput.value = performTransliteration(ioInput.value, rules[modeSelect.value]);
     drawRuleTable(rules[modeSelect.value]);
     applyFont(fontSelect.value);
@@ -391,11 +401,12 @@ let ioInput = document.getElementById("io-input");
 /** @type HTMLTextAreaElement */
 let ioOutput = document.getElementById("io-output");
 
-ioInput.value = "tabatai morilagtun";
+ioInput.value = localStorage['ioInputString'] || "tabatai morilagtun";
 ioOutput.value = performTransliteration(ioInput.value, rules[modeSelect.value]);
 ioOutput.disabled = true;
 
 ioInput.addEventListener('input', () => {
+    localStorage['ioInputString'] = ioInput.value;
     ioOutput.value = performTransliteration(ioInput.value, rules[modeSelect.value]);
 });
 
