@@ -331,11 +331,10 @@ function drawRuleTable(ruleTable) {
 
 const mongolianFonts = {
     "noto": "Noto Sans Mongolian",
-    "mnglart": "Mongolian Art",
-    "mnglhawang": "Mongolian Hawang",
-    "mngltitle": "Mongolian Title",
     "mnglwhite": "Mongolian White",
+    "mnglart": "Mongolian Art",
     "mnglwriting": "Mongolian Writing",
+    "mngltitle": "Mongolian Title",
 };
 
 function applyFont(font) {
