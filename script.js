@@ -60,6 +60,16 @@ function performTransliteration(src, rules) {
             continue;
         }
 
+        // Prevent accidentally typing unassigned Latin letters
+
+        if (src[i] >= 'A' && src[i] <= 'Z') {
+            continue;
+        }
+
+        if (src[i] >= 'a' && src[i] <= 'z') {
+            continue;
+        }
+
         result += src[i];
     }
 
@@ -72,12 +82,12 @@ function performTransliteration(src, rules) {
  * Common transliteration rules.
  */
 const basicRules = {
-    "'":    "",
+    "_":    "",
 
     "#1":   "\u180b",   // FVS1
     "#2":   "\u180c",   // FVS2
     "#3":   "\u180d",   // FVS3
-    "_":    "\u180e",   // MVS
+    "~":    "\u180e",   // MVS
     "#4":   "\u180f",   // FVS4
     "[":    "\u200c",   // ZWNJ
     "]":    "\u200d",   // ZWJ
@@ -118,8 +128,7 @@ const mongolianRules = {
     "ng":   "\u1829",   // Mongolian Ang
     "b":    "\u182a",   // Mongolian Ba
     "p":    "\u182b",   // Mongolian Pa
-    "q":    "\u182c",   // Mongolian Qa
-    "k":    "\u182c",
+    "x":    "\u182c",   // Mongolian Qa
     "g":    "\u182d",   // Mongolian Ga
     "m":    "\u182e",   // Mongolian Ma
     "l":    "\u182f",   // Mongolian La
@@ -140,15 +149,15 @@ const galikRules = {
     "ee":   "\u1827",   // Mongolian Ē
     "w":    "\u1838",   // Mongolian Wa
     "f":    "\u1839",   // Mongolian Fa
-    "kk":   "\u183a",   // Mongolian Ka
-    "kkh":  "\u183b",   // Mongolian Kha
+    "k":    "\u183a",   // Mongolian Ka
+    "kh":   "\u183b",   // Mongolian Kha
     "c":    "\u183c",   // Mongolian Ca
     "z":    "\u183d",   // Mongolian Za
     "h":    "\u183e",   // Mongolian Ha
-    "zh":   "\u183f",   // Mongolian Ža
+    "rh":   "\u183f",   // Mongolian Ža
     "lh":   "\u1840",   // Mongolian Lha
-    "dzh":  "\u1841",   // Mongolian Dža
-    "tsh":  "\u1842",   // Mongolian Tša
+    "ch\'": "\u1841",   // Mongolian Dža
+    "zh\'": "\u1842",   // Mongolian Tša
 };
 
 /**
@@ -166,8 +175,7 @@ const manchuRules = {
     "uu":   "\u1861",   // Xibe Ū
     "ii":   "\u185f",   // Xibe Ï
 
-    "q":    "\u1874",   // Manchu Ka
-    "k":    "\u1874",
+    "x":    "\u1874",   // Manchu Ka
     "h":    "\u1865",   // Xibe Ha
     "p":    "\u1866",   // Xibe Pa
     "g":    "\u1864",   // Xibe Ga
@@ -178,13 +186,12 @@ const manchuRules = {
     "f":    "\u1876",   // Manchu Fa
     "w":    "\u1838",   // Mongolian Wa
 
-    "kh":   "\u183a",   // Mongolian Ka
-    "gh":   "\u186c",   // Xibe Gaa
-    "hh":   "\u186d",   // Xibe Haa
+    "g\'":  "\u186c",   // Xibe Gaa
+    "h\'":  "\u186d",   // Xibe Haa
     "c":    "\u186e",   // Xibe Ca
     "z":    "\u186f",   // Xibe Za
-    "tsh":  "\u1871",   // Xibe Cha
-    "dzh":  "\u1877",   // Manchu Zha
+    "ch\'": "\u1871",   // Xibe Cha
+    "zh\'": "\u1877",   // Manchu Zha
     "rh":   "\u1870",   // Xibe Raa
 };
 
@@ -195,11 +202,11 @@ const manchuRules = {
 const xibeRules = {
     "i":    "\u185e",   // Xibe I
     "ng":   "\u1862",   // Xibe Ang
-    "k":    "\u1863",   // Xibe Ka
+    "x":    "\u1863",   // Xibe Ka
     "j":    "\u186a",   // Xibe Ja
     "r":    "\u1837",   // Mongolian Ra
     "f":    "\u186b",   // Xibe Fa
-    "dzh":  "\u1872",   // Xibe Ja
+    "zh\'": "\u1872",   // Xibe Ja
 };
 
 /**
@@ -222,8 +229,7 @@ const todoRules = {
     "s":    "\u1830",   // Mongolian Sa
     "sh":   "\u1831",   // Mongolian Ša
     "n":    "\u1828",   // Mongolian Na
-    "q":    "\u184d",   // Todo Qa
-    "k":    "\u184d",
+    "x":    "\u184d",   // Todo Qa
     "g":    "\u184e",   // Todo Ga
     "t":    "\u1850",   // Todo Ta
     "d":    "\u1851",   // Todo Da
@@ -237,11 +243,11 @@ const todoRules = {
 
     "p":    "\u184c",   // Todo Pa
     "h":    "\u1859",   // Todo Haa
-    "gh":   "\u1858",   // Todo Gaa
-    "kh":   "\u1857",   // Todo Ka
-    "jh":   "\u185a",   // Todo Jia
-    "nh":   "\u185b",   // Todo Nia
-    "dz":   "\u185c",   // Todo Dza
+    "g\'":  "\u1858",   // Todo Gaa
+    "k":    "\u1857",   // Todo Ka
+    "j\'":  "\u185a",   // Todo Jia
+    "n\'":  "\u185b",   // Todo Nia
+    "z\'":  "\u185c",   // Todo Dza
     "w":    "\u1856",   // Todo Wa
 };
 
