@@ -392,8 +392,8 @@ let ioInput = document.getElementById("io-input");
 /** @type HTMLTextAreaElement */
 let ioOutput = document.getElementById("io-output");
 
-ioInput.value = "";
-ioOutput.value = "";
+ioInput.value = "tabatai morilagtun";
+ioOutput.value = performTransliteration(ioInput.value, rules[modeSelect.value]);
 ioOutput.disabled = true;
 
 ioInput.addEventListener('input', () => {
