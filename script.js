@@ -290,16 +290,29 @@ function drawRuleTable(ruleTable) {
     let headerOutputChar = document.createElement("th");
 
     headerInputChar.innerText = "Input";
-    headerOutputCode.innerText = "Unicode (Code)";
-    headerOutputChar.innerText = "Unicode (Visual)";
+    headerOutputCode.innerText = "Output codepoint";
+    headerOutputChar.innerText = "Output character";
 
     header.appendChild(headerInputChar);
     header.appendChild(headerOutputCode);
     header.appendChild(headerOutputChar);
     
-    const sortedKeys = Object.keys(ruleTable).sort();
+    let sortedRuleArray = [];
 
-    sortedKeys.forEach((key) => {
+    for (let key in ruleTable) {
+        if (ruleTable[key] == "") {
+            sortedRuleArray.push([0, key]);
+        } else {
+            sortedRuleArray.push([ruleTable[key].charCodeAt(0), key]);
+        }
+    }
+
+    sortedRuleArray.sort((a, b) => a[0] - b[0]);
+    console.log(sortedRuleArray);
+
+    for (let i = 0; i < sortedRuleArray.length; i++) {
+        const key = sortedRuleArray[i][1];
+    
         const out = ruleTable[key];
         const ucode = out.charCodeAt(0).toString(16);
 
@@ -330,7 +343,7 @@ function drawRuleTable(ruleTable) {
         row.appendChild(rowOutputChar);
 
         table.appendChild(row);
-    });
+    }
 }
 
 //------------------------------------------------------------------------------
