@@ -147,6 +147,10 @@ select {
     .io-container {
         display: block;
     }
+
+    textarea {
+        height: 200px;
+    }
 }
 
 @media screen and (max-width: 360px) {
